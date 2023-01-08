@@ -4,10 +4,18 @@ import * as d3 from "d3";
 
 const dataSizeSelect = d3.select("#data-size");
 
-dataSizeSelect.on("change", function () {
-  const dataSize = +d3.select(this).property("value");
+const drawVisualizationOnLoad = () => {
+  const dataSize = +dataSizeSelect.property("value");
   const data = generateData(dataSize);
   drawVisualization(data);
-});
+};
+
+// draw on first load
+
+drawVisualizationOnLoad();
+
+// change if values are changed
+
+dataSizeSelect.on("change", drawVisualizationOnLoad);
 
 export {};

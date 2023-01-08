@@ -17,15 +17,33 @@
     <script type="module" src="/src/main.ts" defer></script>
     <main>
       <h1 class="header">Sorting algorithms visualisation</h1>
-
-      <div class="select-container">
-        <select id="data-size">
-          <option value="50" selected>50</option>
-          <option value="100">100</option>
-          <option value="250">250</option>
-          <option value="500">500</option>
-        </select>
+      <div class="selects-wrapper">
+        <div class="select-outer-container">
+          <p>Choose the data size:</p>
+          <div class="select-inner-container">
+            <select id="data-size">
+              <option value="50" selected>50</option>
+              <option value="100">100</option>
+              <option value="250">250</option>
+              <option value="500">500</option>
+            </select>
+          </div>
+        </div>
+        <div class="select-outer-container">
+          <p>Choose sorting alogorithm:</p>
+          <div class="select-inner-container">
+            <select id="sort-algorithm">
+              <option value="bubble-sort" selected>Bubble Sort</option>
+              <option value="selection-sort">Selection Sort</option>
+              <option value="insertion-sort">Insertion Sort</option>
+              <option value="merge-sort">Merge Sort</option>
+              <option value="quick-sort">Quick Sort</option>
+            </select>
+          </div>
+        </div>
       </div>
+      <button class="run-sorting-btn">Start</button>
+
       <div class="visualization"></div>
     </main>
   </body>
