@@ -102,7 +102,7 @@ select::-ms-expand {
 
 /* Button */
 
-.run-sorting-btn {
+button {
   margin-top: 10px;
   border: none;
   border-radius: 5px;
@@ -110,7 +110,21 @@ select::-ms-expand {
   font-weight: bold;
   width: 400px;
   padding: 10px 15px;
-  background-color: grey;
-  color: white;
   cursor: pointer;
+  transition: transform 0.3s ease-in;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(3px);
+  transition: 0.1s;
+}
+
+/* Start sorting button */
+.run-sorting-btn {
+  background-color: green;
+  color: white;
 }
