@@ -1,129 +1,157 @@
 body {
-  font-family: "Lato", sans-serif;
-  overflow-x: hidden;
-  height: 100vh;
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+    height: 100vh;
 }
 
 main {
-  margin-top: 50px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
-.header {
-  margin-top: 20px;
-  font-size: 32px;
-  font-weight: bold;
+header h1 {
+    margin-top: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
 }
 
 .visualization {
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Sorting wrapper */
 
 .selects-wrapper {
-  display: flex;
-  margin-top: 50px;
+    display: flex;
+    margin-top: 50px;
 }
 
 /* Select styles */
 .select-outer-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .select-outer-container p {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 .select-inner-container {
-  position: relative;
-  min-width: 200px;
+    position: relative;
+    min-width: 200px;
 }
 
 select {
-  cursor: pointer;
+    cursor: pointer;
 }
 select::-ms-expand {
-  display: none;
+    display: none;
+}
+
+select:disabled {
+    cursor: not-allowed;
+    background: grey;
 }
 
 .select-inner-container:after {
-  content: "<>";
-  font: 17px "Consolas", monospace;
-  color: #333;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  right: 11px;
-  /*Adjust for position however you want*/
+    content: '<>';
+    font: 17px 'Consolas', monospace;
+    color: #333;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 11px;
+    /*Adjust for position however you want*/
 
-  top: 18px;
-  padding: 0 0 2px;
-  border-bottom: 1px solid #999;
-  /*left line */
+    top: 18px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #999;
+    /*left line */
 
-  position: absolute;
-  pointer-events: none;
+    position: absolute;
+    pointer-events: none;
 }
 
 .select-inner-container select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Add some styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Add some styling */
 
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  height: 50px;
-  margin: 5px 0px;
-  padding: 0px 24px;
-  font-size: 16px;
-  line-height: 1.75;
-  color: #333;
-  background-color: #ffffff;
-  background-image: none;
-  border: 1px solid #cccccc;
-  -ms-word-break: normal;
-  word-break: normal;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    margin: 5px 0px;
+    padding: 0px 24px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    -ms-word-break: normal;
+    word-break: normal;
 }
 
 /* Button */
 
 button {
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 22px;
-  font-weight: bold;
-  width: 400px;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    width: 400px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+    color: white;
+    background-color: indianred;
 }
 
 button:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
+}
+button:active {
+    transform: translateY(2px);
 }
 
-button:active {
-  transform: translateY(3px);
-  transition: 0.1s;
+/* When the disable */
+button.disabled:hover {
+    transform: none;
+}
+
+button.disabled:active {
+    transform: none;
+}
+
+button:disabled button:hover {
+    transform: unset;
+}
+
+button:disable button:active {
+    transform: unset;
+    transition: unset;
 }
 
 /* Start sorting button */
 .run-sorting-btn {
-  background-color: green;
-  color: white;
+    background-color: green;
+}
+
+.run-sorting-btn:disabled {
+    background-color: gray;
+    cursor: not-allowed;
 }

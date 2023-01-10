@@ -1,15 +1,8 @@
 import { delay } from '../utils'
 
-export const bubbleSort = async (
-    data: number[],
-    updateBars: (counter: number) => void,
-    signal?: AbortSignal
-) => {
+export const bubbleSort = async (data: number[], updateBars: (counter: number) => void) => {
     let swapsMade = true
     while (swapsMade) {
-        if (signal && signal.aborted) {
-            throw new DOMException('Aborted', 'AbortError')
-        }
         swapsMade = false
         for (let i = 0; i < data.length - 1; i++) {
             if (data[i] > data[i + 1]) {

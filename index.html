@@ -2,18 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="src/styles/reset.css" />
         <link rel="stylesheet" href="src/styles/index.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>SortAlg</title>
+        <title>SortAlgo</title>
     </head>
     <body>
-        <script type="module" src="/src/main.ts" defer></script>
+        <header>
+            <h1>Sorting algorithms visualisation</h1>
+        </header>
         <main>
-            <h1 class="header">Sorting algorithms visualisation</h1>
             <div class="selects-wrapper">
                 <div class="select-outer-container">
                     <p>Choose the data size:</p>
@@ -39,9 +41,12 @@
                     </div>
                 </div>
             </div>
-            <button class="run-sorting-btn">Start</button>
+
+            <button type="submit" class="run-sorting-btn">Start</button>
             <button class="reset-btn">Reset values</button>
+
             <div class="visualization"></div>
         </main>
+        <script type="module" src="/src/main.ts" async></script>
     </body>
 </html>

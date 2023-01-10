@@ -1,5 +1,13 @@
 import * as d3 from 'd3'
-import { CHART_HEIGHT, CHART_MARGIN, CHART_WIDTH } from './constants'
+import {
+    CHART_HEIGHT,
+    CHART_MARGIN,
+    CHART_WIDTH,
+    RESET_BUTTON,
+    SELECT_DATA_SIZE,
+    SELECT_SORTING_ALGORITHM,
+    START_BUTTON,
+} from './constants'
 import { SelectAlgorithm } from './utils'
 
 const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => {
@@ -43,8 +51,6 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
             d3.select(this).style('opacity', 1)
         })
 
-    const startButton = document.querySelector('.run-sorting-btn') as HTMLButtonElement
-
     const updateBars = (counter: number) => {
         const bars = svg.selectAll<SVGRectElement, number>('rect').data(data)
 
@@ -72,35 +78,24 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         bars.exit().remove()
     }
 
-    let isActive = false
-    let controller = new AbortController()
-    startButton.addEventListener('click', async () => {
-        if (!isActive) {
-            isActive = true
-            startButton.textContent = 'Stop'
-            startButton.style.backgroundColor = 'red'
+    START_BUTTON.addEventListener('click', async () => {
+        START_BUTTON.disabled = true
+        SELECT_DATA_SIZE.disabled = true
+        SELECT_SORTING_ALGORITHM.disabled = true
 
-            try {
-                const sort = SelectAlgorithm(data, algorithmType)
-                await sort(updateBars, controller.signal)
-                svg.selectAll('rect').style('fill', 'black')
-            } catch (err) {
-                if (err instanceof DOMException && err.name === 'AbortError') {
-                    console.log('Sorting function aborted')
-                } else {
-                    throw err
-                }
-            }
-        } else {
-            isActive = false
-            startButton.textContent = 'Start'
-            startButton.style.backgroundColor = 'green'
-            controller.abort()
-        }
-        isActive = false
-        startButton.textContent = 'Start'
-        startButton.style.backgroundColor = 'green'
-        controller = new AbortController()
+        const sort = SelectAlgorithm(data, algorithmType)
+        await sort(updateBars)
+        svg.selectAll('rect').style('fill', 'black')
+
+        START_BUTTON.disabled = false
+        SELECT_DATA_SIZE.disabled = false
+        SELECT_SORTING_ALGORITHM.disabled = false
+    })
+    // if reset i clicked while sorting is running take care with disableing button
+    RESET_BUTTON.addEventListener('click', () => {
+        START_BUTTON.disabled = false
+        SELECT_DATA_SIZE.disabled = false
+        SELECT_SORTING_ALGORITHM.disabled = false
     })
 }
 
