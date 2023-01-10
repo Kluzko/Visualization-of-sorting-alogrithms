@@ -1,6 +1,9 @@
 import { bubbleSort } from '../alogrithms'
 
-type UpdateBarsFunctionType = (updateBars: (counter: number) => void) => Promise<void>
+type UpdateBarsFunctionType = (
+    updateBars: (counter: number) => void,
+    signal?: AbortSignal
+) => Promise<void>
 
 export const SelectAlgorithm = (
     data: number[],
@@ -8,7 +11,7 @@ export const SelectAlgorithm = (
 ): UpdateBarsFunctionType => {
     switch (sortingAlgorithmName) {
         case 'bubble-sort':
-            return updateBars => bubbleSort(data, updateBars)
+            return (updateBars, signal) => bubbleSort(data, updateBars, signal)
         default:
             throw new Error(`Invalid sorting algorithm: ${sortingAlgorithmName}`)
     }

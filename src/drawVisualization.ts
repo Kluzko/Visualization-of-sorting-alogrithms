@@ -45,11 +45,9 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
 
     const startButton = document.querySelector('.run-sorting-btn') as HTMLButtonElement
 
-    function updateBars(counter: number) {
-        // Select all the bars and bind them to the data
+    const updateBars = (counter: number) => {
         const bars = svg.selectAll<SVGRectElement, number>('rect').data(data)
 
-        // Define the update function
         const update = (selection: d3.Selection<SVGRectElement, number, d3.BaseType, unknown>) => {
             selection
                 .style('fill', (_d, i) => (i === counter || i === counter + 1 ? 'red' : 'blue'))
@@ -61,7 +59,7 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         // Apply the update function to the bars selection
         bars.call(update)
 
-        // Handle any new data elements by appending new bars
+        // Handle any new data
         bars.enter()
             .append('rect')
             .attr('x', (_d, i) => (i + counter) * (barWidth + barPadding))
@@ -70,14 +68,39 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
             .attr('height', 0)
             .call(update)
 
-        // Handle any removed data elements by removing the corresponding bars
+        // Handle any removed data elements
         bars.exit().remove()
     }
 
+    let isActive = false
+    let controller = new AbortController()
     startButton.addEventListener('click', async () => {
-        const sort = SelectAlgorithm(data, algorithmType)
-        await sort(updateBars)
-        svg.selectAll('rect').style('fill', 'black')
+        if (!isActive) {
+            isActive = true
+            startButton.textContent = 'Stop'
+            startButton.style.backgroundColor = 'red'
+
+            try {
+                const sort = SelectAlgorithm(data, algorithmType)
+                await sort(updateBars, controller.signal)
+                svg.selectAll('rect').style('fill', 'black')
+            } catch (err) {
+                if (err instanceof DOMException && err.name === 'AbortError') {
+                    console.log('Sorting function aborted')
+                } else {
+                    throw err
+                }
+            }
+        } else {
+            isActive = false
+            startButton.textContent = 'Start'
+            startButton.style.backgroundColor = 'green'
+            controller.abort()
+        }
+        isActive = false
+        startButton.textContent = 'Start'
+        startButton.style.backgroundColor = 'green'
+        controller = new AbortController()
     })
 }
 
