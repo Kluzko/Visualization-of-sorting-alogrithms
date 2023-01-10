@@ -129,21 +129,12 @@ button:active {
 }
 
 /* When the disable */
-button.disabled:hover {
+button:disabled:hover {
     transform: none;
 }
 
-button.disabled:active {
+button:disabled:active {
     transform: none;
-}
-
-button:disabled button:hover {
-    transform: unset;
-}
-
-button:disable button:active {
-    transform: unset;
-    transition: unset;
 }
 
 /* Start sorting button */

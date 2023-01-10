@@ -78,18 +78,26 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         bars.exit().remove()
     }
 
+    let sortingInProgress = false
+
     START_BUTTON.addEventListener('click', async () => {
+        if (sortingInProgress) {
+            return
+        }
+        sortingInProgress = true
         START_BUTTON.disabled = true
         SELECT_DATA_SIZE.disabled = true
         SELECT_SORTING_ALGORITHM.disabled = true
 
         const sort = SelectAlgorithm(data, algorithmType)
-        await sort(updateBars)
-        svg.selectAll('rect').style('fill', 'black')
+        await sort(updateBars).then(() => {
+            svg.selectAll('rect').style('fill', 'black')
 
-        START_BUTTON.disabled = false
-        SELECT_DATA_SIZE.disabled = false
-        SELECT_SORTING_ALGORITHM.disabled = false
+            sortingInProgress = false
+            START_BUTTON.disabled = false
+            SELECT_DATA_SIZE.disabled = false
+            SELECT_SORTING_ALGORITHM.disabled = false
+        })
     })
     // if reset i clicked while sorting is running take care with disableing button
     RESET_BUTTON.addEventListener('click', () => {
