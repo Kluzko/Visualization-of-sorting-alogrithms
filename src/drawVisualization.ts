@@ -64,11 +64,10 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
 
         // Apply the update function to the bars selection
         bars.call(update)
-
         // Handle any new data
         bars.enter()
             .append('rect')
-            .attr('x', (_d, i) => (i + counter) * (barWidth + barPadding))
+            .attr('x', (_d, i) => i * (barWidth + barPadding))
             .attr('y', CHART_HEIGHT)
             .attr('width', barWidth)
             .attr('height', 0)
