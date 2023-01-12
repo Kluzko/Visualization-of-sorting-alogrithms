@@ -11,6 +11,7 @@ import {
 import { SelectAlgorithm } from './utils'
 
 const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => {
+    data = data.filter(d => d !== undefined)
     // If it is .visualization del it first
     d3.select('.visualization').selectAll('rect').remove()
     d3.select('.visualization').select('svg').remove()
@@ -22,23 +23,29 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         .attr('height', CHART_HEIGHT)
         .attr('transform', 'translate(' + CHART_MARGIN.left + ',' + CHART_MARGIN.top + ')')
 
+    const maxValue = data.reduce((max, val) => (val !== undefined && val > max ? val : max), 0)
+    const yScale = d3
+        .scaleLinear()
+        .domain([0, maxValue + 10]) // added to avoid overflow find later better fix
+        .range([CHART_HEIGHT, 0])
+
     // Create a bar chart using the data
-    const barPadding = 1
+    const barPadding = 0.95 // added to avoid overflow find later better fix
     const barWidth = CHART_WIDTH / data.length - 1
     svg.selectAll('rect')
         .data(data)
         .enter()
         .append('rect')
         .attr('x', (_d, i) => i * (barWidth + barPadding))
-        .attr('y', d => CHART_HEIGHT - d)
         .attr('width', barWidth)
-        .attr('height', d => d)
+        .attr('y', d => yScale(d))
+        .attr('height', d => CHART_HEIGHT - yScale(d))
         .on('mouseover', function (_d, i) {
             d3.select(this.parentElement)
                 .append('text')
                 .text(i)
                 .attr('x', () => data.indexOf(i) * (barWidth + barPadding) + barWidth / 2)
-                .attr('y', CHART_HEIGHT - i - 20)
+                .attr('y', yScale(i) - 5)
                 .attr('font-size', '14px')
                 .attr('fill', 'blue')
                 .attr('text-anchor', 'middle')
@@ -58,8 +65,8 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
             selection
                 .style('fill', (_d, i) => (i === counter || i === counter + 1 ? 'red' : 'blue'))
                 .attr('x', (_d, i) => i * (barWidth + barPadding))
-                .attr('y', d => CHART_HEIGHT - d)
-                .attr('height', d => d)
+                .attr('y', d => yScale(d))
+                .attr('height', d => CHART_HEIGHT - yScale(d))
         }
 
         // Apply the update function to the bars selection
@@ -68,7 +75,7 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         bars.enter()
             .append('rect')
             .attr('x', (_d, i) => i * (barWidth + barPadding))
-            .attr('y', CHART_HEIGHT)
+            .attr('y', d => yScale(d))
             .attr('width', barWidth)
             .attr('height', 0)
             .call(update)
