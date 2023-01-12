@@ -81,6 +81,7 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
 
     START_BUTTON.addEventListener('click', async () => {
         if (sortingInProgress) {
+            console.log('stoped')
             return
         }
         sortingInProgress = true

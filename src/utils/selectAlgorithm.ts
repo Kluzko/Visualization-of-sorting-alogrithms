@@ -1,4 +1,4 @@
-import { bubbleSort, insertionSort, selectionSort } from '../alogrithms'
+import { bubbleSort, insertionSort, mergeSort, selectionSort } from '../alogrithms'
 
 type UpdateBarsFunctionType = (updateBars: (compared: number) => void) => Promise<void>
 
@@ -13,6 +13,8 @@ export const SelectAlgorithm = (
             return updateBars => selectionSort(data, updateBars)
         case 'insertion-sort':
             return updateBars => insertionSort(data, updateBars)
+        case 'merge-sort':
+            return updateBars => mergeSort(data, updateBars)
         default:
             throw new Error(`Invalid sorting algorithm: ${sortingAlgorithmName}`)
     }
