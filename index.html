@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+        
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SortAlgo</title>
+      <script async type="module" crossorigin src="/Visualization-of-sorting-alogrithms/assets/index-e690c83f.js"></script>
+      <link rel="stylesheet" href="/Visualization-of-sorting-alogrithms/assets/index-40fde6ab.css">
+    </head>
+    <body>
+        <header>
+            <h1>Sorting algorithms visualisation</h1>
+        </header>
+        <main>
+            <div class="selects-wrapper">
+                <div class="select-outer-container">
+                    <p>Choose the data size:</p>
+                    <div class="select-inner-container">
+                        <select id="data-size">
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                            <option value="250">250</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="select-outer-container">
+                    <p>Choose sorting alogorithm:</p>
+                    <div class="select-inner-container">
+                        <select id="sorting-algorithm">
+                            <option value="bubble-sort" selected>Bubble Sort</option>
+                            <option value="selection-sort">Selection Sort</option>
+                            <option value="insertion-sort">Insertion Sort</option>
+                            <option value="merge-sort">Merge Sort</option>
+                            <option value="quick-sort">Quick Sort</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="run-sorting-btn">Start</button>
+            <button class="reset-btn">Reset values</button>
+
+            <div class="visualization"></div>
+        </main>
+        
+    </body>
+</html>
