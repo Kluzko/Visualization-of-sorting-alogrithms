@@ -145,3 +145,18 @@ button:disabled:active {
     background-color: gray;
     cursor: not-allowed;
 }
+
+/* performance stats styles */
+
+.performance-stats {
+    display: flex;
+    margin-top: 50px;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.performance-stats div {
+    display: flex;
+    flex-direction: column;
+}

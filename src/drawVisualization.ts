@@ -6,6 +6,7 @@ import {
     RESET_BUTTON,
     SELECT_DATA_SIZE,
     SELECT_SORTING_ALGORITHM,
+    SORT_TIME,
     START_BUTTON,
 } from './constants'
 import { SelectAlgorithm } from './utils'
@@ -85,7 +86,7 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
     }
 
     let sortingInProgress = false
-
+    let timeInfo = '0.00 s'
     const sortingPromise = new Promise<void>(resolve => {
         START_BUTTON.addEventListener('click', async () => {
             if (sortingInProgress) {
@@ -97,8 +98,14 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
             SELECT_DATA_SIZE.disabled = true
             SELECT_SORTING_ALGORITHM.disabled = true
 
+            const startTime = performance.now()
             const sort = SelectAlgorithm(data, algorithmType)
             await sort(updateBars)
+            const endTime = performance.now()
+            const totalTime = ((endTime - startTime) / 1000).toFixed(2) // get alogrithm running time in  seconds
+            console.log(totalTime)
+            timeInfo = `${totalTime} s`
+
             resolve()
         })
     })
@@ -106,9 +113,9 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
     sortingPromise.then(() => {
         svg.selectAll('rect').style('fill', 'black')
         sortingInProgress = false
-        START_BUTTON.disabled = false
         SELECT_DATA_SIZE.disabled = false
         SELECT_SORTING_ALGORITHM.disabled = false
+        SORT_TIME.textContent = timeInfo
     })
 
     // if reset i clicked while sorting is running take care with disableing button
@@ -116,6 +123,7 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
         START_BUTTON.disabled = false
         SELECT_DATA_SIZE.disabled = false
         SELECT_SORTING_ALGORITHM.disabled = false
+        SORT_TIME.textContent = '0.00 s'
     })
 }
 
