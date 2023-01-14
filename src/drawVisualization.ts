@@ -86,25 +86,31 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
 
     let sortingInProgress = false
 
-    START_BUTTON.addEventListener('click', async () => {
-        if (sortingInProgress) {
-            return
-        }
-        sortingInProgress = true
-        START_BUTTON.disabled = true
-        SELECT_DATA_SIZE.disabled = true
-        SELECT_SORTING_ALGORITHM.disabled = true
+    const sortingPromise = new Promise<void>(resolve => {
+        START_BUTTON.addEventListener('click', async () => {
+            if (sortingInProgress) {
+                console.log('stoped')
+                return
+            }
+            sortingInProgress = true
+            START_BUTTON.disabled = true
+            SELECT_DATA_SIZE.disabled = true
+            SELECT_SORTING_ALGORITHM.disabled = true
 
-        const sort = SelectAlgorithm(data, algorithmType)
-        await sort(updateBars).then(() => {
-            svg.selectAll('rect').style('fill', 'black')
-
-            sortingInProgress = false
-            START_BUTTON.disabled = false
-            SELECT_DATA_SIZE.disabled = false
-            SELECT_SORTING_ALGORITHM.disabled = false
+            const sort = SelectAlgorithm(data, algorithmType)
+            await sort(updateBars)
+            resolve()
         })
     })
+
+    sortingPromise.then(() => {
+        svg.selectAll('rect').style('fill', 'black')
+        sortingInProgress = false
+        START_BUTTON.disabled = false
+        SELECT_DATA_SIZE.disabled = false
+        SELECT_SORTING_ALGORITHM.disabled = false
+    })
+
     // if reset i clicked while sorting is running take care with disableing button
     RESET_BUTTON.addEventListener('click', () => {
         START_BUTTON.disabled = false
