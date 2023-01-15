@@ -151,7 +151,7 @@ button:disabled:active {
 .performance-stats {
     display: flex;
     margin-top: 50px;
-    width: 300px;
+    width: 600px;
     justify-content: space-between;
     align-items: center;
 }
@@ -159,4 +159,9 @@ button:disabled:active {
 .performance-stats div {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.performance-stats div p {
+    font-weight: bold;
 }

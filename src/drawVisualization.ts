@@ -97,7 +97,6 @@ const drawVisualization = (data: number[], algorithmType: SortingAlgorithms) => 
             START_BUTTON.disabled = true
             SELECT_DATA_SIZE.disabled = true
             SELECT_SORTING_ALGORITHM.disabled = true
-
             const startTime = performance.now()
             const sort = SelectAlgorithm(data, algorithmType)
             await sort(updateBars)
