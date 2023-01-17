@@ -12,6 +12,9 @@ This project uses d3.js and TypeScript to create visualizations of the following
 
 ![](https://github.com/Kluzko/Visualization-of-sorting-alogrithms/blob/master/static/website-demonstration.gif)
 
+
+You can visit the website here https://kluzko.github.io/Visualization-of-sorting-alogrithms
+
 # In progress
 
 -   add slider to adjust animation speed ( now is as fast as possible )
