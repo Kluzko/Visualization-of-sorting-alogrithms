@@ -56,7 +56,7 @@ Values are the average of 5 tests
 > **Note**
 > These values may vary depending on your computer it also depends on how sorted numbers you get.
 
-But as you can see **Bubble Sort** is very not efficent alogrithm.
+But as you can see **Bubble Sort** is very inefficent alogrithm.
 
 # See LEARN.md for more information
 
