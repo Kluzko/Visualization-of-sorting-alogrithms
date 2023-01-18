@@ -7,6 +7,8 @@ Welcome to the Sorting Algorithms Visualization project! This project uses d3.js
 -   Insertion sort
 -   Merge sort
 -   Quick sort
+-   Radix sort
+-   Bucket sort
 
 To get started, you'll need to clone the repository and run `npm install` to install the necessary dependencies. Then, you can run `npm run dev` and visit http://localhost:5173/ to see the visualization in action.
 
@@ -32,6 +34,10 @@ Sorting algorithms are used to arrange elements of an array in a specific order.
 
 -   Quick sort is a divide and conquer algorithm that selects a 'pivot' element from the array and partition the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively.
 
+-   Radix sort is a sorting algorithm that sorts the elements by first grouping the individual digits of the same place value. Then, sort the elements according to their increasing/decreasing order.
+
+-   Bucket Sort is a sorting algorithm that divides the unsorted array elements into several groups called buckets. Each bucket is then sorted by using any of the suitable sorting algorithms or recursively applying the same bucket algorithm.
+
 It's worth noting that the time and space complexity of sorting algorithms can vary greatly depending on the algorithm and the input. You can use the website to compare the performance of different sorting algorithms and get a better understanding of how they work.
 
 # d3.js and Visualization
@@ -54,5 +60,6 @@ As you can see in the code, the sorting functions uses the `await delay(1)` line
     -   insertion sort: https://www.geeksforgeeks.org/insertion-sort/
     -   merge sort: https://www.geeksforgeeks.org/merge-sort/
     -   quick sort: https://www.geeksforgeeks.org/quick-sort/
+    -   radix sort: https://www.programiz.com/dsa/bucket-sort
 
 These resources were used to gain a better understanding of the sorting algorithms and how to implement them using d3.js.It's a good idea to review the documentation and examples provided by these resources to get a deeper understanding of the project and the techniques used.
