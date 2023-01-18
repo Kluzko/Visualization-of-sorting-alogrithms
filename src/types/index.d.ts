@@ -5,3 +5,4 @@ type SortingAlgorithms =
     | 'merge-sort'
     | 'quick-sort'
     | 'radix-sort'
+    | 'bucket-sort'

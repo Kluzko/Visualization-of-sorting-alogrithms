@@ -12,6 +12,8 @@ export const getComplexity = (sortingAlgorithmName: SortingAlgorithms) => {
             return { time: `O(n log n)`, space: `O(log n)` }
         case 'radix-sort':
             return { time: `O(nk)`, space: `O(n+k)` }
+        case 'bucket-sort':
+            return { time: `O(n^2)`, space: `O(n)` }
         default:
             throw new Error(`Invalid sorting algorithm: ${sortingAlgorithmName}`)
     }

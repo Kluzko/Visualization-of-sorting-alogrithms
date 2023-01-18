@@ -1,5 +1,6 @@
 import {
     bubbleSort,
+    bucketSort,
     insertionSort,
     mergeSort,
     quickSort,
@@ -26,6 +27,8 @@ export const SelectAlgorithm = (
             return updateBars => quickSort(data, updateBars)
         case 'radix-sort':
             return updateBars => radixSort(data, updateBars)
+        case 'bucket-sort':
+            return updateBars => bucketSort(data, updateBars)
         default:
             throw new Error(`Invalid sorting algorithm: ${sortingAlgorithmName}`)
     }

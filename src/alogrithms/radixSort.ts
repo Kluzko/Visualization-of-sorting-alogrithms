@@ -29,8 +29,8 @@ export const radixSort = async (data: number[], updateBars: (counter: number) =>
         // contains sorted numbers according to current digit
         for (let i = 0; i < data.length; i++) {
             data[i] = output[i]
+            updateBars(i)
+            await delay(1)
         }
-        updateBars(exp)
-        await delay(500) // it so fast that i need to slow down it
     }
 }
