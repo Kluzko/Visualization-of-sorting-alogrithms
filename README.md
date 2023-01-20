@@ -45,7 +45,7 @@ Values are the average of 5 tests
 
 |   **Algoritms**    | **50 numbers** | **100 numbers** | **250 numbers** | **500 numbers** |
 | :----------------: | :------------: | :-------------: | :-------------: | :-------------: |
-|  **Bubble Sort**   |    ≈ 9.34s     |    ≈ 40.24s     |    ≈ 198.56     |    ≈ 1310.26    |
+|  **Bubble Sort**   |    ≈ 9.34s     |    ≈ 40.24s     |    ≈ 198.56s    |    ≈ 1310.26s   |
 | **Selection Sort** |    ≈ 0.76s     |     ≈ 1.55s     |     ≈ 3.88s     |     ≈ 7.81s     |
 | **Insertion Sort** |    ≈ 0.76s     |     ≈ 1.54s     |     ≈ 3.89s     |     ≈ 7.81s     |
 |   **Merge Sort**   |    ≈ 2.33s     |     ≈ 3.08s     |     ≈ 8.17s     |    ≈ 19.68s     |
